@@ -1,84 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-</head>
-
-<body>
-    <div style="padding: 20px;">
-        <ul class="list-group">
-            <li class="list-group-item">
-                <h2><span style="width: 100%; padding: 20px 0;" class="badge bg-info">Create Task</span></h2>
-                <form>
-                    <div class="mb-3">
-                        <label for="taskName" class="form-label">Task Name</label>
-                        <input type="text" class="form-control" id="taskName" aria-describedby="taskName" capture>
-                    </div>
-                    <div class="mb-3">
-                        <label for="taskId" class="form-label">Task Id</label>
-                        <input type="text" class="form-control" id="taskId" aria-describedby="taskId" capture>
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Upload Image</label>
-                        <input type="file" class="form-control" id="uploadImage" aria-describedby="uploadImage" capture>
-                    </div>
-                    <div class="mb-3">
-                        <span class="input-group-text">Editing Details</span>
-                        <textarea class="form-control" aria-label="Editing Details"></textarea>
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
-            </li>
-            <li class="list-group-item">
-                <h2><span style="width: 100%;padding: 20px 0;" class="badge bg-info">Score Task</span></h2>
-                <button class="btn btn-primary" onclick="getTasks()" style="margin: 10px 10%; width: 80%;">Get Tasks</button>
-                <ul class="list-group" id="tasks"></ul>
-            </li>
-        </ul>
-
-    </div>
-    <!-- Bootstrap script cdn link -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-    <script>
-        function getTasks() {
-            fetch('./data.json').then(data => data.json()).then(data => addTasks(data))
-        }
-
-        function addTasks(tasks) {
-
-            let ul = document.getElementById('tasks')
-            tasks.map(task => {
-                let newTask = document.createElement('li')
-                newTask.setAttribute('class', 'list-group-item')
-                newTask.setAttribute('style','text-align: center;')
-                newTask.innerHTML = `
-                <img src=${task} alt="" style="margin-bottom:20px; width: 150px;">
-                <br>
-                <span>Score:</span>
-                <select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>`
-                ul.appendChild(newTask)
-            })
-            let submitButton = document.createElement('button')
-            submitButton.setAttribute('class','btn btn-primary')
-            submitButton.innerText='Submit Score'
-            ul.appendChild(submitButton)
-        }
-    </script>
-</body>
-
+    </head>
+    
+    <body>
+        <div style="padding: 20px;">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <h2><span style="width: 100%; padding: 20px 0;" class="badge bg-info">Create Task</span></h2>
+                    <form>
+                        <div class="mb-3">
+                            <label for="taskName" class="form-label">Task Name</label>
+                            <input type="text" class="form-control" id="taskName" aria-describedby="taskName" capture>
+                        </div>
+                        <div class="mb-3">
+                            <label for="taskId" class="form-label">Task Id</label>
+                            <input type="text" class="form-control" id="taskId" aria-describedby="taskId" capture>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Upload Image</label>
+                            <input type="file" class="form-control" id="uploadImage" aria-describedby="uploadImage" capture>
+                        </div>
+                        <div class="mb-3">
+                            <span class="input-group-text">Editing Details</span>
+                            <textarea class="form-control" aria-label="Editing Details"></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary" id="submitbtn" onclick="added()">Submit</button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <h2><span style="width: 100%;padding: 20px 0;" class="badge bg-info">Score Task</span></h2>
+                    <button class="btn btn-primary" onclick="getTasks()" style="margin: 10px 10%; width: 80%;">Get Tasks</button>
+                    <ul class="list-group" id="tasks"></ul>
+                </li>
+            </ul>
+            
+        </div>
+    </body>
+    
+    <script src="js/index.js"></script>
 </html>
